@@ -81,14 +81,14 @@ public class DecisionEngineDummy {
       .fullName("Persona de Perú")
       .income(30000000.0F)
       .build(),
-    TypesOfCustomers.WITH_TAM,
+    TypesOfCustomers.WITH_15_AND_900K,
     Customer.builder()
       .customerId(4L)
       .age(15)
       .city("Bogotá")
       .countryCode("CO")
-      .fullName("Persona con tarjeta amparada")
-      .income(0.0F)
+      .fullName("Persona con 15 años y 900k")
+      .income(900000.0F)
       .build(),
     TypesOfCustomers.WITH_18_AND_1M,
     Customer.builder()
@@ -126,8 +126,8 @@ public class DecisionEngineDummy {
     DecisionEngine.builder().customer(customerMap.get(TypesOfCustomers.WITH_NO_PRODUCTS)).financeProductList(financeProducts).build(),
     TypesOfCustomers.FROM_PERU,
     DecisionEngine.builder().customer(customerMap.get(TypesOfCustomers.FROM_PERU)).financeProductList(financeProducts).build(),
-    TypesOfCustomers.WITH_TAM,
-    DecisionEngine.builder().customer(customerMap.get(TypesOfCustomers.WITH_TAM)).financeProductList(financeProducts).build(),
+    TypesOfCustomers.WITH_15_AND_900K,
+    DecisionEngine.builder().customer(customerMap.get(TypesOfCustomers.WITH_15_AND_900K)).financeProductList(financeProducts).build(),
     TypesOfCustomers.WITH_18_AND_1M,
     DecisionEngine.builder().customer(customerMap.get(TypesOfCustomers.WITH_18_AND_1M)).financeProductList(financeProducts).build(),
     TypesOfCustomers.WITH_15_AND_100K,

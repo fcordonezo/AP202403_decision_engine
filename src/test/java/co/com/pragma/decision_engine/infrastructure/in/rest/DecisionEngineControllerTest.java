@@ -44,20 +44,23 @@ class DecisionEngineControllerTest {
   }
 
   @Test
-  @DisplayName("Persona de Perú (GIR)")
+  @DisplayName("Persona de Perú (SEG, INV, GIR, TAM)")
   void personFromPeru() {
     DecisionEngine decisionEngine = runUseCase.run(decisionEngineMap.get(TypesOfCustomers.FROM_PERU));
     assertNotNull(decisionEngine);
-    assertEquals(1, decisionEngine.financeProductList().size());
-    assertEquals(decisionEngine.financeProductList().get(0).code(), "GIR");
+    assertEquals(4, decisionEngine.financeProductList().size());
+    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("SEG")));
+    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("INV")));
+    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("GIR")));
+    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("TAM")));
   }
 
   @Test
-  @DisplayName("Persona con tarjeta amparada")
+  @DisplayName("Persona con 15 años y 900k (SEG, GIR, TAM)")
   void personWithTAM() {
-    DecisionEngine decisionEngine = runUseCase.run(decisionEngineMap.get(TypesOfCustomers.WITH_TAM));
+    DecisionEngine decisionEngine = runUseCase.run(decisionEngineMap.get(TypesOfCustomers.WITH_15_AND_900K));
     assertNotNull(decisionEngine);
-    assertEquals(1, decisionEngine.financeProductList().size());
+    assertEquals(3, decisionEngine.financeProductList().size());
     assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("TAM")));
   }
 
@@ -74,13 +77,12 @@ class DecisionEngineControllerTest {
   }
 
   @Test
-  @DisplayName("Persona con 15 años y 100K (SEG, INV, TAM)")
+  @DisplayName("Persona con 15 años y 100K (GIR, TAM)")
   void personWith15And100K() {
-    DecisionEngine decisionEngine = runUseCase.run(decisionEngineMap.get(TypesOfCustomers.WITH_TAM));
+    DecisionEngine decisionEngine = runUseCase.run(decisionEngineMap.get(TypesOfCustomers.WITH_15_AND_100K));
     assertNotNull(decisionEngine);
-    assertEquals(3, decisionEngine.financeProductList().size());
-    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("SEG")));
-    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("INV")));
+    assertEquals(2, decisionEngine.financeProductList().size());
+    assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("GIR")));
     assertTrue(decisionEngine.financeProductList().stream().anyMatch(product -> product.code().equals("TAM")));
   }
 
