@@ -36,7 +36,7 @@ public class RunUseCase implements RunServicePort {
         return false;
       }
       List<String> countries = new ArrayList<>((List<String>)ruleSet.get("countries"));
-      if(countries.stream().noneMatch(s -> s.equals(customer.countryCode()))) {
+      if(!countries.isEmpty() && countries.stream().noneMatch(s -> s.equals(customer.countryCode()))) {
         return false;
       }
     } catch (JsonProcessingException e) {
