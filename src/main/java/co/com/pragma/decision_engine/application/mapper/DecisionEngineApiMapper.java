@@ -3,10 +3,10 @@ package co.com.pragma.decision_engine.application.mapper;
 import co.com.pragma.decision_engine.application.dto.CustomerDto;
 import co.com.pragma.decision_engine.application.dto.DecisionEngineRequestDto;
 import co.com.pragma.decision_engine.application.dto.DecisionEngineResponseDto;
-import co.com.pragma.decision_engine.application.dto.FinanceServiceDto;
+import co.com.pragma.decision_engine.application.dto.FinanceProductDto;
 import co.com.pragma.decision_engine.domain.model.Customer;
 import co.com.pragma.decision_engine.domain.model.DecisionEngine;
-import co.com.pragma.decision_engine.domain.model.FinanceService;
+import co.com.pragma.decision_engine.domain.model.FinanceProduct;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -19,8 +19,8 @@ public interface DecisionEngineApiMapper {
 
   Customer toCustomer(CustomerDto dto);
   CustomerDto toCustomerDto(Customer customer);
-  FinanceService toFinanceService(FinanceServiceDto dto);
-  FinanceServiceDto toFinanceServiceDto(FinanceService financeService);
+  FinanceProduct toFinanceService(FinanceProductDto dto);
+  FinanceProductDto toFinanceServiceDto(FinanceProduct financeProduct);
 
 
   default DecisionEngine toDecisionEngine(DecisionEngineRequestDto dto) {
@@ -28,15 +28,15 @@ public interface DecisionEngineApiMapper {
       return null;
     }
     Customer customer = INSTANCE.toCustomer(dto.customerDto());
-    List<FinanceService> financeServiceList = dto.financeServiceDtoList().stream().map(INSTANCE::toFinanceService).toList();
-    return new DecisionEngine(customer, financeServiceList);
+    List<FinanceProduct> financeProductList = dto.financeProductDtoList().stream().map(INSTANCE::toFinanceService).toList();
+    return new DecisionEngine(customer, financeProductList);
   }
   default DecisionEngineResponseDto toDecisionEngineResponseDto(DecisionEngine decisionEngine) {
     if (decisionEngine == null){
       return null;
     }
     CustomerDto customerDto = INSTANCE.toCustomerDto(decisionEngine.customer());
-    List<FinanceServiceDto> financeServiceDtoList = decisionEngine.financeServiceList().stream().map(INSTANCE::toFinanceServiceDto).toList();
-    return new DecisionEngineResponseDto(customerDto, financeServiceDtoList);
+    List<FinanceProductDto> financeProductDtoList = decisionEngine.financeProductList().stream().map(INSTANCE::toFinanceServiceDto).toList();
+    return new DecisionEngineResponseDto(customerDto, financeProductDtoList);
   }
 }

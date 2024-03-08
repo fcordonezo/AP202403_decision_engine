@@ -7,6 +7,6 @@ import java.util.List;
 @Builder
 public record DecisionEngine(
   Customer customer,
-  List<FinanceService> financeServiceList
+  List<FinanceProduct> financeProductList
 ) {
 }

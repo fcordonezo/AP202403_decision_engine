@@ -3,7 +3,7 @@ package co.com.pragma.decision_engine.domain.usecase;
 import co.com.pragma.decision_engine.domain.api.RunServicePort;
 import co.com.pragma.decision_engine.domain.model.Customer;
 import co.com.pragma.decision_engine.domain.model.DecisionEngine;
-import co.com.pragma.decision_engine.domain.model.FinanceService;
+import co.com.pragma.decision_engine.domain.model.FinanceProduct;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -19,16 +19,16 @@ public class RunUseCase implements RunServicePort {
   public DecisionEngine run(DecisionEngine decisionEngine) {
 
     Customer customer = decisionEngine.customer();
-    List<FinanceService> financeServiceList = decisionEngine.financeServiceList();
+    List<FinanceProduct> financeProductList = decisionEngine.financeProductList();
 
-    List<FinanceService> newFinanceService = financeServiceList.stream()
-      .filter(financeService -> this.applyRuleSet(financeService, customer)).toList();
-    return new DecisionEngine(customer, newFinanceService);
+    List<FinanceProduct> newFinanceProduct = financeProductList.stream()
+      .filter(financeProduct -> this.applyRuleSet(financeProduct, customer)).toList();
+    return new DecisionEngine(customer, newFinanceProduct);
   }
 
-  private Boolean applyRuleSet(FinanceService financeService, Customer customer) {
+  private Boolean applyRuleSet(FinanceProduct financeProduct, Customer customer) {
     try {
-      Map<?, ?> ruleSet = mapper.readValue(financeService.ruleSet(), Map.class);
+      Map<?, ?> ruleSet = mapper.readValue(financeProduct.ruleSet(), Map.class);
       if(customer.age() < (Integer)ruleSet.get("minAge")) {
         return false;
       }

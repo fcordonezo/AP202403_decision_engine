@@ -11,7 +11,7 @@ public record DecisionEngineResponseDto(
   @JsonProperty("customer")
   CustomerDto customerDto,
 
-  @JsonProperty("financeServices")
-  List<FinanceServiceDto> financeServiceDtoList
+  @JsonProperty("financeProducts")
+  List<FinanceProductDto> financeProductDtoList
 ) {
 }

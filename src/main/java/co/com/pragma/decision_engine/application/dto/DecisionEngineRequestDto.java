@@ -10,7 +10,7 @@ public record DecisionEngineRequestDto(
   @JsonAlias("customer")
   CustomerDto customerDto,
 
-  @JsonAlias("financeServices")
-  List<FinanceServiceDto> financeServiceDtoList
+  @JsonAlias("financeProducts")
+  List<FinanceProductDto> financeProductDtoList
 ) {
 }
