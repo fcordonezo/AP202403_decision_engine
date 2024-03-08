@@ -1,7 +1,6 @@
-package co.com.pragma.decision_engine.infrastructure.in.rest;
+package co.com.pragma.decision_engine.domain.usecase;
 
 import co.com.pragma.decision_engine.domain.model.DecisionEngine;
-import co.com.pragma.decision_engine.domain.usecase.RunUseCase;
 import co.com.pragma.decision_engine.test_object.DecisionEngineDummy;
 import co.com.pragma.decision_engine.test_object.TypesOfCustomers;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 @DisplayName("Decision Engine Test")
-class DecisionEngineControllerTest {
+class RunUseCaseTest {
 
   @InjectMocks
   private RunUseCase runUseCase;
 
-  private Map<TypesOfCustomers, DecisionEngine> decisionEngineMap = DecisionEngineDummy.decisionEngineMap;
+  private final Map<TypesOfCustomers, DecisionEngine> decisionEngineMap = DecisionEngineDummy.decisionEngineMap;
 
   @BeforeEach
   void setUp() {
