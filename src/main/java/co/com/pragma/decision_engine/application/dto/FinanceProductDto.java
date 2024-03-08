@@ -4,7 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record FinanceServiceDto(
-  Long financeServiceId,
+  Long financeProductId,
   String code,
   String description,
   String ruleSet
