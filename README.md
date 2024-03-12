@@ -48,7 +48,7 @@ Hay dos opciones para poder lanzar el proyecto de forma local:
    configuraciones, simplemente se debe abrir un terminal, posicionarse en la raíz del proyecto
    y escribir los siguientes comandos
     ``` shell
-    mvn clean install -Dmaven.test.skip=true
+    mvn clean install
     mvn spring-boot:run
    ```
 2. Ejecutando el proyecto desde IntelliJ Idea, para lo cual lo único necesario es configurar la
