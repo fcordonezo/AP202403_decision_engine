@@ -42,13 +42,15 @@ los campos que salen se deben establecer de la siguiente manera:
 
 ## Ejecución
 
+#### <a href="https://github.com/fcordonezo/AP202403_documentation/blob/develop/collections/FinanceService_collection.json" download>Descargar colección Postman</a>
+
 Hay dos opciones para poder lanzar el proyecto de forma local:
 1. Usando el comando mvn, para lo cual hay que tener instalado Maven así como el SDK de Java 21
    en el computador, y también se deben configurar las variables de entorno. Después de tener estas
    configuraciones, simplemente se debe abrir un terminal, posicionarse en la raíz del proyecto
    y escribir los siguientes comandos
     ``` shell
-    mvn clean install -Dmaven.test.skip=true
+    mvn clean install
     mvn spring-boot:run
    ```
 2. Ejecutando el proyecto desde IntelliJ Idea, para lo cual lo único necesario es configurar la
